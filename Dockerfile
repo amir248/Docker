@@ -4,7 +4,7 @@ USER root
 RUN apt-get update && \
     apt-get install -y build-essential
 WORKDIR /app
-RUN npm config set unsafe-perm true
+# RUN npm config set unsafe-perm true
 COPY package*.json ./
 # RUN apt-get update && \
     # apt-get install -y build-essential
