@@ -3,6 +3,10 @@ MAINTAINER Amir
 WORKDIR /app
 RUN apt update
 COPY package*.json ./
-RUN npm install
+RUN sudo npm install
+COPY . .
+ENV PORT=3700
+EXPOSE 3700
+CMD ["npm":"start"]
 # RUN sudo apt instal nodejs
-CMD ["echo", "Hello World"]
+# CMD ["echo", "Hello World"]
