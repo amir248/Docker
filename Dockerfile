@@ -1,30 +1,21 @@
-FROM node
-MAINTAINER AmirsBox
-# USER root
-RUN apt-get update && \
-    apt-get install -y build-essential
+# Базовый образ Node.js (можно указать конкретную версию, например node:18)
+FROM node:latest
+
+# Создаем директорию для приложения
+RUN mkdir -p /app
 WORKDIR /app
-# RUN npm config set unsafe-perm true
+
+# Копируем package.json и package-lock.json
 COPY package*.json ./
-# RUN apt-get update && \
-    # apt-get install -y build-essential
 
-# RUN npm install --verbose
+# Устанавливаем зависимости
+RUN npm ci
 
-RUN npm ci --verbose
-# RUN npm ci
-# RUN npm config set user 0 && \
-#     npm config set unsafe-perm true
-# RUN npm cache clean --force
-# RUN npm cache clean --force && \ npm ci --verbose
-
+# Копируем исходный код приложения
 COPY . .
-RUN npm run build
-# FROM nginx
-# COPY --from=builder /app/build /usr/share/nginx/html
-ENV PORT=3000
+
+# Открываем порт (замените на нужный вам)
 EXPOSE 3000
-USER node
-CMD ["npm":"start"]
-# RUN sudo apt instal nodejs
-# CMD ["echo", "Hello World"]
+
+# Команда для запуска приложения
+CMD ["npm", "start"]
