@@ -1,9 +1,10 @@
 FROM ubuntu
 MAINTAINER Amir
 WORKDIR /app
+COPY package*.json ./
 RUN apt-get update && \
     apt-get install -y build-essential
-COPY package*.json ./
+
 RUN npm install --verbose
 # RUN npm ci
 COPY . .
