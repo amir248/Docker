@@ -7,8 +7,15 @@ COPY package*.json ./
 # RUN apt-get update && \
     # apt-get install -y build-essential
 
-RUN npm install --verbose
+# RUN npm install --verbose
+# RUN npm install --legacy-peer-deps
 # RUN npm ci
+# RUN npm config set user 0 && \
+    # npm config set unsafe-perm true
+# RUN npm cache clean --force
+RUN npm cache clean --force && \
+    npm ci --verbose
+    
 COPY . .
 RUN npm run build
 # FROM nginx
