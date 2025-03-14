@@ -12,8 +12,8 @@ COPY package*.json ./
 
 RUN npm ci --verbose
 # RUN npm ci
-RUN npm config set user 0 && \
-    npm config set unsafe-perm true
+# RUN npm config set user 0 && \
+#     npm config set unsafe-perm true
 # RUN npm cache clean --force
 # RUN npm cache clean --force && \ npm ci --verbose
 
@@ -23,6 +23,7 @@ RUN npm run build
 # COPY --from=builder /app/build /usr/share/nginx/html
 ENV PORT=3700
 EXPOSE 3700
+USER node
 CMD ["npm":"start"]
 # RUN sudo apt instal nodejs
 # CMD ["echo", "Hello World"]
