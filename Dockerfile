@@ -1,4 +1,3 @@
-docker build -t your-image .
 FROM node:18
 # MAINTAINER Amir
 USER root
